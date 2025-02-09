@@ -6,6 +6,9 @@ package frc.robot.subsystems;
 
 import javax.swing.text.html.HTML.Tag;
 
+import org.photonvision.PhotonCamera;
+import org.photonvision.targeting.PhotonPipelineResult;
+
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -25,6 +28,8 @@ public class chassis extends SubsystemBase {
   // private double tx;
   // private double ta;
   // private double tv;
+
+  private final Photonvision1 photonvision1 = new Photonvision1();
 
   public void robotInit() {
       // limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
@@ -94,6 +99,7 @@ public class chassis extends SubsystemBase {
   }
 
   public void autotarget() {
+
 
     
 
@@ -174,5 +180,13 @@ public class chassis extends SubsystemBase {
 //   public void simulationPeriodic() {
 //     // This method will be called once per scheduler run during simulation
 //   }
+
+if (photonvision1.hastarget1 == true && photonvision1.hastarget2 == false) {
+  forward();
+}else if(photonvision1.hastarget1 == false && photonvision1.hastarget2 == true){
+  backward();
+}else{
+  stop();
+}
   }
 }
