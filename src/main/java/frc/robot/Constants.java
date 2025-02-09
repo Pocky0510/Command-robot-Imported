@@ -18,6 +18,7 @@ public final class Constants {
     public static final int FR = 2;
     public static final int RL = 3;
     public static final int RR = 4;
+    public static final double Speed = 0.3;
   }
 
   public static class LimelightConstants {

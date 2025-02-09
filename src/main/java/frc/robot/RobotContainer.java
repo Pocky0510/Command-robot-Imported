@@ -4,13 +4,13 @@
 
 package frc.robot;
 
-import frc.robot.commands.Autos;  
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.Candle;
-import frc.robot.subsystems.Limelight;
+// import frc.robot.commands.Autos;  
+// import frc.robot.commands.ExampleCommand;
+// import frc.robot.subsystems.Candle;
+// import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.chassis;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.Command;
+// import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -25,8 +25,8 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final chassis mChassis = new chassis();
-  private final Candle mCandle = new Candle();
-  private final Limelight mlimelight = new Limelight();
+  // private final Candle mCandle = new Candle();
+  // private final Limelight mlimelight = new Limelight();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final XboxController m_driverController = new XboxController(0); 
@@ -36,7 +36,7 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
     mChassis.setDefaultCommand(
-      new RunCommand(()-> mChassis.drive(m_driverController.getLeftX()*0.5,m_driverController.getRightY()*0.5),mChassis));
+      new RunCommand(()-> mChassis.drive(m_driverController.getLeftX()*-0.6, m_driverController.getRightY()*0.6),mChassis));
   }
 
   /**
@@ -51,6 +51,7 @@ public class RobotContainer {
   
   private void configureBindings() {
     new JoystickButton(m_driverController, 1).whileTrue(new RunCommand(mChassis::autotarget)).onFalse(new InstantCommand(mChassis::stop));
+
     // Schedule exampleMethodCommand when the Xbox controller's B button is pressed,  
     // cancelling on release.
     
