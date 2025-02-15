@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.chassisID;
 import frc.robot.LimelightHelpers;
+import frc.robot.subsystems.Photonvision1;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class chassis extends SubsystemBase {
@@ -29,7 +30,7 @@ public class chassis extends SubsystemBase {
   // private double ta;
   // private double tv;
 
-  private final Photonvision1 photonvision1 = new Photonvision1();
+  public Photonvision1 Photonvision1 = new Photonvision1();
 
   public void robotInit() {
       // limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
@@ -54,6 +55,7 @@ public class chassis extends SubsystemBase {
 
   public DifferentialDrive tank = new DifferentialDrive(Frontleft, Frontright);
   
+  private final Photonvision1 photonvision1 = new Photonvision1();
 /** Creates a new ExampleSubsystem. */
   
   public chassis() {
@@ -101,32 +103,40 @@ public class chassis extends SubsystemBase {
   public void autotarget() {
 
 
+
     
 
 
 
-
+boolean hasTarget1 = Photonvision1.hasTarget1();
+double area = Photonvision1.Area;
+double skew = photonvision1.Skew;
+// double pitch = Photonvision1.Pitch;
+// boolean hasTarget1 hasTarget1 = new Photonvision1.hasTarget1();
 //   double tx = Limelight.getTX();
 //   double ta = Limelight.getTa();
 //   double tv = Limelight.getTv();
-// if(tv >= 1){
-//   if (tx < 6 && tx > -6) {
-//     stop();
-//   }else if (ta < 6 && ta > 4 ) {
-//     stop();
-//   }else if (ta > 6) {
-//     backward();
-//   }else if (ta < 4) {
-//     forward();
-//   }else if (tx > 6) {
-//     right();
-//   } else {
-//     left();
-//     }  
-// }else{
-//   stop();
-//       }
-//     }
+if(hasTarget1 == true){
+
+  if (area<4) {
+    forward();
+  }else if (area>6) {
+    backward();
+  }else{
+    stop();
+  }
+
+  if (skew<-4) {
+    left();
+  }else if (skew>4) {
+    right();
+  }else{
+    stop();
+  }
+
+    }else{
+      stop();
+          }
 //   }
 
 
@@ -181,12 +191,13 @@ public class chassis extends SubsystemBase {
 //     // This method will be called once per scheduler run during simulation
 //   }
 
-if (photonvision1.hastarget1 == true && photonvision1.hastarget2 == false) {
-  forward();
-}else if(photonvision1.hastarget1 == false && photonvision1.hastarget2 == true){
-  backward();
-}else{
-  stop();
+// if (photonvision1.hastarget1 == true && photonvision1.hastarget2 == false) {
+//   forward();
+// }else if(photonvision1.hastarget1 == false && photonvision1.hastarget2 == true){
+//   backward();
+// }else{
+//   stop();
+// }
+//   }
 }
-  }
 }
