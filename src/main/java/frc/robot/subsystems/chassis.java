@@ -65,9 +65,9 @@ public class chassis extends SubsystemBase {
     Rearright.configFactoryDefault();
 
     Frontleft.setInverted(false);
-    Frontright.setInverted(false); 
+    Frontright.setInverted(true); 
     RearLeft.setInverted(false);
-    Rearright.setInverted(false);
+    Rearright.setInverted(true);
 
     RearLeft.follow(Frontleft);
     Rearright.follow(Frontright);
@@ -110,7 +110,7 @@ public class chassis extends SubsystemBase {
 
 boolean hasTarget1 = Photonvision1.hasTarget1();
 double area = Photonvision1.Area;
-double skew = photonvision1.Skew;
+double yaw = photonvision1.Yaw;
 // double pitch = Photonvision1.Pitch;
 // boolean hasTarget1 hasTarget1 = new Photonvision1.hasTarget1();
 //   double tx = Limelight.getTX();
@@ -120,24 +120,56 @@ if(hasTarget1 == true){
 
   if (area<4) {
     forward();
-  }else if (area>6) {
+  }else if (area>5) {
     backward();
-  }else{
-    stop();
   }
 
-  if (skew<-4) {
-    left();
-  }else if (skew>4) {
+  if (yaw<-7) {
     right();
-  }else{
-    stop();
+  }else if (yaw>7) {
+    left();
   }
+  
 
     }else{
       stop();
           }
-//   }
+
+  // public void autotarget1() {
+
+
+
+    
+
+
+
+  //   boolean hasTarget1 = Photonvision1.hasTarget1();
+  //   double area = Photonvision1.Area;
+  //   double yaw = photonvision1.Yaw;
+  //           // double pitch = Photonvision1.Pitch;
+  //           // boolean hasTarget1 hasTarget1 = new Photonvision1.hasTarget1();
+  //           //   double tx = Limelight.getTX();
+  //           //   double ta = Limelight.getTa();
+  //           //   double tv = Limelight.getTv();
+  //   if(hasTarget1 == true){
+            
+  //     if (area<4) {
+  //       forward();
+  //     }else if (area>5) {
+  //       backward();
+  //     }
+            
+  //     if (yaw<-7) {
+  //       right();
+  //     }else if (yaw>7) {
+  //       left();
+  //     }
+              
+            
+  //       }else{
+  //         stop();
+  //             }
+  //           }
 
 
 

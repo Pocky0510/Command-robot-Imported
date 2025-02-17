@@ -25,7 +25,14 @@ public class Photonvision1 extends SubsystemBase {
     }
 
     double Area = 0;
-    double Skew = 0;
+    double Yaw = 0;
+
+    public void setPipeline1() {
+        camera.setPipelineIndex(0);
+    }
+    public void setPipeline2() {
+        camera.setPipelineIndex(1);
+    }
 
     private void updateTarget() {
         result1 = camera.getLatestResult();
@@ -33,12 +40,12 @@ public class Photonvision1 extends SubsystemBase {
             target = result1.getBestTarget();
             if (target != null) {
                 Area = target.getArea();
-                Skew = target.getSkew();
+                Yaw = target.getYaw();
             }
         } else {
             target = null;
             Area = 0;
-            Skew = 0;
+            Yaw = 0;
         }
     }
     public boolean hasTarget1() {
@@ -59,6 +66,7 @@ public class Photonvision1 extends SubsystemBase {
     @Override
     public void periodic() {
         updateTarget();
+
         // hasTarget2();
         
 
